@@ -21,7 +21,6 @@ class Message(db.Model, SerializerMixin):
     def serialize(self):
         return {
             'id': self.id,
-            'title': self.title,
             'body': self.body,
             'username': self.username,
             'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),

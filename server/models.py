@@ -16,3 +16,14 @@ class Message(db.Model, SerializerMixin):
     username = db.Column(db.String)
     created_at = db.Column(db.DateTime, server_default=db.func.now())
     updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+
+        # Define a custom serialization method
+    def serialize(self):
+        return {
+            'id': self.id,
+            'title': self.title,
+            'body': self.body,
+            'username': self.username,
+            'created_at': self.created_at.strftime('%Y-%m-%d %H:%M:%S'),
+            'updated_at': self.updated_at.strftime('%Y-%m-%d %H:%M:%S')
+        }
